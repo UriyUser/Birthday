@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Dai+Banna+SIL:wght@300&family=Lobster&family=Noto+Sans+JP&family=Pacifico&family=Rubik+Broken+Fax&family=Rye&display=swap');
+
+         marquee {
+            position: absolute;
+            width: 1100px;
+            left: 150px;
+            top: 40px;
+            background: #990c3b;
+            border-radius: 20px;
+            color: aqua;
+            font-size: 40px;
+            font-family: 'Pacifico';
+        }
+
+        .text-center {
+            text-align: left;
+            line-height: 150%;
+        }
+
+        hr {
+            clear: both;
+        }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #160107, #2909b6, #3d2d03);
+            background-size: 400% 400%;
+            animation: gradient 10s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+        .blond {
+            display: block;
+            width: 904px;
+            margin: 0 auto;
+        }
+
+        .out {
+            position: absolute;
+            top: 120px;
+            left: 500px;
+            font-size: 42px;
+            font-family: 'Pacifico';
+            color: rgb(40, 189, 60);
+            text-indent: 200px;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/boy.gif" />
+    <marquee behavior="alternate" direction="left">&#9809; &sext; happy Birthday to You!!! &sext;</marquee>
+
+    <div class="container">
+        <div class="row">
+            <pre class="form-control col col-lg-12 text-center out"></pre>
+        </div>
+    </div>
+
+    <script>
+        const t = [
+            "Інна!\n",
+    "З Днем народження вітаю!\n",
+    "Від всієї душі тобі бажаю,\n",
+    "В житті всього вдосталь мати,\n",
+    "Впевнено до цілей крокувати\n\n",
+    
+    "Хай мрії швидко збуваються,\n",
+    "Нові горизонти відкриваються,\n",
+    "Хай проблеми обходять стороною\n",
+    "Успіх хай завжди буде з тобою!",
+];
+
+function typeText() {
+    let line = 0;
+    let count = 0;
+    let out = '';
+    let htmlOut = document.querySelector('.out');
+
+    function typeLine() {
+        // рисуем строку
+        let interval = setTimeout(function () {
+            out += t[line][count];
+            htmlOut.innerHTML = out + '|';
+            count++;
+            //Проверяем не закончилась ли строка
+            if (count >= t[line].length) {
+                count = 0;
+                line++;
+                if (line == t.length) {
+                    clearTimeout(interval); // остановил таймаут
+                    htmlOut.innerHTML = out; // убираем курсор
+                    return true;
+                }
+            }
+            typeLine();
+        }, getRandomInt(350));
+    }
+
+    //проверка
+    typeLine();
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+}
+
+typeText();
+</script>    
+</body>
+</html>
